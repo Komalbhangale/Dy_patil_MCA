@@ -1,1 +1,57 @@
+Scenario: 
+A teacher wants to sort the scores of her students in ascending order to prepare a ranking list
+Problem Statement:
+Write a program that sorts a list of student scores using the Bubble Sort algorithm.
+Sample Input:
+scores = [88, 95, 70, 100, 82, 91, 73}
+Sample Output:
+sorted_scores = [70, 73, 82, 88, 91, 95, 100]
+----------------------------------------------------------------
+Practice:
 
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      int[] arr={88, 95, 70, 100, 82, 91, 73};
+      
+      //write main logic here
+    
+      
+      for(int i:arr)
+      {
+        System.out.println(i +" ");
+      }
+
+  }
+}
+
+=====================================================================
+Solution:
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      int[] arr={88, 95, 70, 100, 82, 91, 73};
+      
+      //bubble sort
+      for(int i=0;i<arr.length;i++)
+      {
+        for(int j=0;j<arr.length-i-1;j++)
+        {
+          if(arr[j]>arr[j+1])
+          {
+            int temp=arr[j];
+            arr[j]=arr[j+1];
+            arr[j+1]=temp;
+          }
+        }
+      }
+      
+      for(int i:arr)
+      {
+        System.out.println(i +" ");
+      }
+
+  }
+}
