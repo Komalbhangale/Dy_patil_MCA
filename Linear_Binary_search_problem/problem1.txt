@@ -1,1 +1,69 @@
+/* Given an array of integers sorted in non-decreasing order and a target value, write a function to find the first and last position of the target value. If the target is not found, return [-1, -1].
+Example:
+Input :  [5, 7, 7, 8, 8, 10]  target =8
+Output : [3,4]
+*/
+
+
+Solution:
+import java.util.Scanner;
+
+public class Main {
+
+    public static int[] find_first_last_index(int[] arr, int key) {
+        int first_pos = find_first_pos(arr, key);
+        if (first_pos == -1) {
+            return new int[] {-1, -1};
+        }
+        int last_pos = find_last_pos(arr, key);
+        return new int[] {first_pos, last_pos};
+    }
+
+    // Private method to find the first position of the target using binary search
+    private static int find_first_pos(int[] arr, int key) {
+        int left = 0, right = arr.length - 1;
+        int first_pos_index = -1;
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            if (arr[mid] == key) {
+                first_pos_index = mid;
+                right = mid - 1;
+            } else if (arr[mid] > key) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return first_pos_index;
+    }
+
+    // Private method to find the last position of the target using binary search
+    private static int find_last_pos(int[] arr, int key) {
+        int left = 0, right = arr.length - 1;
+        int last_pos_index = -1;
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            if (arr[mid] == key) {
+                last_pos_index = mid;
+                left = mid + 1;
+            } else if (arr[mid] > key) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return last_pos_index;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int[] arr = new int[5];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = sc.nextInt();
+        }
+        int key = sc.nextInt();
+        int[] result = find_first_last_index(arr, key);
+        System.out.println(result[0] + "\n" + result[1]);
+    }
+}
 
