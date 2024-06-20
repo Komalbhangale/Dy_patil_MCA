@@ -1,1 +1,110 @@
+Given a sorted array of N integers and an integer x, write a program to find the upper bound of x.
+Example 1:
+Input Format:
+ N = 4, arr[] = {1,2,2,3}, x = 2
+Result:
+ 3
+Explanation:
+ Index 3 is the smallest index such that arr[3] > x.
 
+
+Example 2:
+Input Format:
+ N = 6, arr[] = {3,5,8,9,15,19}, x = 9
+Result:
+ 4
+Explanation:
+ Index 4 is the smallest index such that arr[4] > x.
+
+------------------------------------------------------------------------------
+practice:
+Linear search:
+import java.util.*;
+
+
+public class Main {
+    public static void main(String[] args) {
+      int [] arr={3,5,8,9,15,19};
+      int target =9;
+      int ans=0;
+      
+      for(int i=0;i<arr.length;i++)
+      {
+       //write logic here
+      }
+      System.out.println(ans);
+  }
+}
+
+
+
+Binary search:
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+      int [] arr={3,5,8,9,15,19};
+      int target =9;
+      int ans=0;
+      
+      int left=0,right=arr.length-1,mid=0;
+      while(left<=right)
+      {
+        //write main logic here
+      }
+      
+      System.out.println(ans);
+  }
+}
+--------------------------------------------------------
+solution:
+linear search:
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+      int [] arr={3,5,8,9,15,19};
+      int target =9;
+      int ans=0;
+      
+      for(int i=0;i<arr.length;i++)
+      {
+        if(arr[i]>target)
+        {
+          ans=i;
+          break;
+        }
+      }
+      System.out.println(ans);
+  }
+}
+
+
+
+Binary search:
+import java.util.*;
+
+
+public class Main {
+    public static void main(String[] args) {
+      int [] arr={3,5,8,9,15,19};
+      int target =9;
+      int ans=0;
+      
+      int left=0,right=arr.length-1,mid=0;
+      while(left<=right)
+      {
+        mid=(left+right)/2;
+        if(arr[mid]>target)
+        {
+          ans=mid;
+          right=mid-1;
+        }
+        else
+        {
+          left=mid+1;
+        }
+        
+      }
+      
+      System.out.println(ans);
+  }
+}
