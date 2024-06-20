@@ -1,1 +1,63 @@
+An online store wants to display product prices from lowest to highest to help customers easily find the most affordable options.
+Problem Statement:
+Write a program that sorts a list of product prices using the Selection Sort algorithm.
+Sample Input:
+python
+prices = [19.99, 5.49, 25.00, 13.75, 8.99, 22.50]
 
+Sample Output:
+python
+sorted_prices = [5.49, 8.99, 13.75, 19.99, 22.50, 25.00]
+------------------------------------------------------------------------
+Practice:
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      double[] arr={19.99, 5.49, 25.00, 13.75, 8.99, 22.50};
+      
+      //selection sort
+      //write your code here
+      
+      for(double i:arr)
+      {
+        System.out.println(i +" ");
+      }
+
+  }
+}
+
+=================================================================
+
+Solution:
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      double[] arr={19.99, 5.49, 25.00, 13.75, 8.99, 22.50};
+      
+      //selection sort
+      for(int i=0;i<arr.length;i++)
+      {
+        int min_value=i;
+        for(int j=i+1;j<=arr.length-1;j++)
+        {
+          if(arr[j]<arr[min_value])
+          {
+            min_value=j;
+          }
+          
+        }
+        double temp=arr[min_value];
+        arr[min_value]=arr[i];
+        arr[i]=temp;
+      }
+      
+      for(double i:arr)
+      {
+        System.out.println(i +" ");
+      }
+
+  }
+}
