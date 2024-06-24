@@ -1,1 +1,190 @@
+//doubly linked list operations
+public class DoublyLinkedList {
+    class Node {
+        String data;
+        Node next;
+        Node prev;
+
+        Node(String data) {
+            this.data = data;
+            this.next = null;
+            this.prev = null;
+        }
+    }
+
+    Node head;
+    Node tail;
+
+    // Method to add a node at the beginning
+    public void addFirst(String data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+            tail = newNode;
+            return;
+        }
+        newNode.next = head;
+        head.prev = newNode;
+        head = newNode;
+    }
+
+    // Method to add a node at the end
+    public void addLast(String data) {
+        Node newNode = new Node(data);
+        if (tail == null) {
+            head = newNode;
+            tail = newNode;
+            return;
+        }
+        tail.next = newNode;
+        newNode.prev = tail;
+        tail = newNode;
+    }
+
+    // Method to add a node at a specific position (1-based index)
+    public void addAtPosition(String data, int position) {
+        if (position < 1) {
+            System.out.println("Position should be greater than 0");
+            return;
+        }
+        Node newNode = new Node(data);
+        if (position == 1) {
+            addFirst(data);
+            return;
+        }
+        Node temp = head;
+        for (int i = 1; i < position - 1 && temp != null; i++) {
+            temp = temp.next;
+        }
+        if (temp == null) {
+            System.out.println("Position out of bounds");
+            return;
+        }
+        newNode.next = temp.next;
+        if (temp.next != null) {
+            temp.next.prev = newNode;
+        }
+        temp.next = newNode;
+        newNode.prev = temp;
+        if (newNode.next == null) {
+            tail = newNode;
+        }
+    }
+
+    // Method to remove the first node
+    public void removeFirst() {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        if (head == tail) {
+            head = null;
+            tail = null;
+            return;
+        }
+        head = head.next;
+        head.prev = null;
+    }
+
+    // Method to remove the last node
+    public void removeLast() {
+        if (tail == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        if (head == tail) {
+            head = null;
+            tail = null;
+            return;
+        }
+        tail = tail.prev;
+        tail.next = null;
+    }
+
+    // Method to remove a node at a specific position (1-based index)
+    public void removeAtPosition(int position) {
+        if (position < 1) {
+            System.out.println("Position should be greater than 0");
+            return;
+        }
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        if (position == 1) {
+            removeFirst();
+            return;
+        }
+        Node temp = head;
+        for (int i = 1; i < position && temp != null; i++) {
+            temp = temp.next;
+        }
+        if (temp == null) {
+            System.out.println("Position out of bounds");
+            return;
+        }
+        if (temp.next != null) {
+            temp.next.prev = temp.prev;
+        }
+        if (temp.prev != null) {
+            temp.prev.next = temp.next;
+        }
+        if (temp == tail) {
+            tail = temp.prev;
+        }
+    }
+
+    // Method to display the list from head to tail
+    public void display() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+
+    // Method to display the list from tail to head
+    public void displayReverse() {
+        Node temp = tail;
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.prev;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        DoublyLinkedList dll = new DoublyLinkedList();
+        dll.addFirst("hi");
+        dll.addFirst("hey");
+        dll.addLast("welcome");
+
+        System.out.println("List (head to tail):");
+        dll.display();
+
+        System.out.println("List (tail to head):");
+        dll.displayReverse();
+
+        dll.removeFirst();
+        System.out.println("After removing first element:");
+        dll.display();
+
+        dll.removeLast();
+        System.out.println("After removing last element:");
+        dll.display();
+
+        dll.addFirst("hello");
+        dll.addLast("world");
+        dll.display();
+
+        dll.addAtPosition("middle", 3);
+        System.out.println("After adding 'middle' at position 3:");
+        dll.display();
+
+        dll.removeAtPosition(3);
+        System.out.println("After removing element at position 3:");
+        dll.display();
+    }
+}
 
