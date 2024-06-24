@@ -1,1 +1,159 @@
+public class CircularLinkedList {
+    Node head;
+    Node tail;
+
+    // Method to add a node at the beginning
+    public void addFirst(String data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+            tail = newNode;
+            tail.next = head;
+            return;
+        }
+        newNode.next = head;
+        head = newNode;
+        tail.next = head;
+    }
+
+    // Method to add a node at the end
+    public void addLast(String data) {
+        Node newNode = new Node(data);
+        if (tail == null) {
+            head = newNode;
+            tail = newNode;
+            tail.next = head;
+            return;
+        }
+        tail.next = newNode;
+        tail = newNode;
+        tail.next = head;
+    }
+
+    // Method to add a node at a specific position (1-based index)
+    public void addAtPosition(String data, int position) {
+        if (position < 1) {
+            System.out.println("Position should be greater than 0");
+            return;
+        }
+        Node newNode = new Node(data);
+        if (position == 1) {
+            addFirst(data);
+            return;
+        }
+        Node temp = head;
+        for (int i = 1; i < position - 1 && temp.next != head; i++) {
+            temp = temp.next;
+        }
+        if (temp.next == head) {
+            addLast(data);
+            return;
+        }
+        newNode.next = temp.next;
+        temp.next = newNode;
+    }
+
+    // Method to remove the first node
+    public void removeFirst() {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        if (head == tail) {
+            head = null;
+            tail = null;
+            return;
+        }
+        head = head.next;
+        tail.next = head;
+    }
+
+    // Method to remove the last node
+    public void removeLast() {
+        if (tail == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        if (head == tail) {
+            head = null;
+            tail = null;
+            return;
+        }
+        Node temp = head;
+        while (temp.next != tail) {
+            temp = temp.next;
+        }
+        temp.next = head;
+        tail = temp;
+    }
+
+    // Method to remove a node at a specific position (1-based index)
+    public void removeAtPosition(int position) {
+        if (position < 1) {
+            System.out.println("Position should be greater than 0");
+            return;
+        }
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        if (position == 1) {
+            removeFirst();
+            return;
+        }
+        Node temp = head;
+        for (int i = 1; i < position - 1 && temp.next != head; i++) {
+            temp = temp.next;
+        }
+        if (temp.next == head || temp.next.next == head) {
+            removeLast();
+            return;
+        }
+        temp.next = temp.next.next;
+    }
+
+    // Method to display the list
+    public void display() {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        Node temp = head;
+        do {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        } while (temp != head);
+        System.out.println("(head)");
+    }
+
+    public static void main(String[] args) {
+        CircularLinkedList cll = new CircularLinkedList();
+        cll.addFirst("hi");
+        cll.addFirst("hey");
+        cll.addLast("welcome");
+
+        System.out.println("List:");
+        cll.display();
+
+        cll.removeFirst();
+        System.out.println("After removing first element:");
+        cll.display();
+
+        cll.removeLast();
+        System.out.println("After removing last element:");
+        cll.display();
+
+        cll.addFirst("hello");
+        cll.addLast("world");
+        cll.display();
+
+        cll.addAtPosition("middle", 3);
+        System.out.println("After adding 'middle' at position 3:");
+        cll.display();
+
+        cll.removeAtPosition(3);
+        System.out.println("After removing element at position 3:");
+        cll.display();
+    }
+}
 
