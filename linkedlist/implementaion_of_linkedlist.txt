@@ -1,1 +1,150 @@
+//singly linked list insertion and deletion operations
 
+import java.util.*;
+
+public class Main {
+    class Node
+    {
+      String data;
+      Node next;
+      
+      Node(String data)
+      {
+        this.data=data;
+        this.next=null;
+      }
+    }
+    
+    Node head;
+    
+    public void addFirst(String data)
+    {
+      Node newNode=new Node(data);
+      if(head==null)
+      {
+        head=newNode;
+        return;
+      }
+      newNode.next=head;
+      head=newNode;
+    }
+    
+    
+    public void addlast(String data)
+    {
+      Node newnode=new Node(data);
+      if(head==null)
+      {
+        head=newnode;
+        return;
+      }
+      else
+      {
+        Node temp=head;
+        while(temp.next!=null)
+        {
+          temp=temp.next;
+        }
+        temp.next=newnode;
+      }
+    }
+    
+    public void addmiddle(String data,int pos)
+    {
+      Node newnode=new Node(data);
+      if(pos<1)
+      {
+        System.out.println("enter proper position");
+      }
+      if(pos==1)
+      {
+        newnode.next=head;
+        head=newnode;
+        return;
+      }
+      
+      Node temp=head;
+      for(int i=1;i<pos-1 && temp!=null;i++)
+      {
+        temp=temp.next;
+      }
+      
+      newnode.next=temp.next;
+      temp.next=newnode;
+    }
+    public void display()
+    {
+      Node temp=head;
+      while(temp!=null)
+      {
+        System.out.print(temp.data + "->");
+        temp=temp.next;
+      }
+      System.out.println("null");
+    }
+    
+    public void removefirst()
+    {
+      if(head==null)
+      {
+        System.out.println("list is empty");
+        return;
+      }
+      head=head.next;
+    }
+    
+    public void removelast()
+    {
+       if(head==null)
+      {
+        System.out.println("list is empty");
+        return;
+      }
+      if(head.next==null)
+      {
+        head=null;
+        return;
+      }
+      Node temp=head;
+      while(temp.next.next!=null)
+      {
+        temp=temp.next;
+      }
+      temp.next=null;
+    }
+    
+    public void removemiddle(int pos)
+    {
+      if(head==null)
+      {
+        System.out.println("list is empty");
+        return;
+      }
+      
+      if(pos==1)
+      {
+        head=head.next;
+        return;
+      }
+      Node temp=head;
+      for(int i=1;i<pos-1 && temp!=null;i++)
+      {
+      temp=temp.next;
+      }
+      temp.next=temp.next.next;
+    }
+    public static void main(String[] args) {
+      Main obj=new Main();
+      obj.addFirst("hi");
+      obj.addFirst("hey");
+      obj.addlast("welcome");
+      obj.addmiddle("sir",3);
+      obj.display();
+      obj.removefirst();
+      obj.removelast();
+      obj.addlast("monday");
+      obj.addlast("sunday");
+      obj.removemiddle(3);
+      obj.display();
+  }
+}
