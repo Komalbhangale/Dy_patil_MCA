@@ -1,1 +1,66 @@
+Given the head of a singly linked list, return true if it is a 
+palindrome
+ or false otherwise.
+
+ 
+
+Example 1:
+
+
+Input: head = [1,2,2,1]
+Output: true
+Example 2:
+
+
+Input: head = [1,2]
+Output: false
+ 
+
+Constraints:
+
+The number of nodes in the list is in the range [1, 105].
+0 <= Node.val <= 9
+ 
+
+Follow up: Could you do it in O(n) time and O(1) space?
+
+Practice:
+class ListNode {
+    int val;
+    ListNode next;
+
+    ListNode(int x) {
+        val = x;
+        next = null;
+    }
+}
+
+public class Solution {
+    public boolean isPalindrome(ListNode head) {
+       //write your logic here
+    }
+    
+
+
+    // Example usage
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+
+        // Example 1
+        ListNode head1 = new ListNode(1);
+        head1.next = new ListNode(2);
+        head1.next.next = new ListNode(2);
+        head1.next.next.next = new ListNode(1);
+
+        boolean result1 = solution.isPalindrome(head1);
+        System.out.println("Example 1: " + result1);  // Output: true
+
+        // Example 2
+        ListNode head2 = new ListNode(1);
+        head2.next = new ListNode(2);
+
+        boolean result2 = solution.isPalindrome(head2);
+        System.out.println("Example 2: " + result2);  // Output: false
+    }
+}
 
