@@ -34,7 +34,7 @@ pos is -1 or a valid index in the linked-list.
 
 
 
-practice:
+practice in java:
 
 class ListNode {
     int val;
@@ -84,3 +84,40 @@ public class Solution {
     }
 }
 
+-----------------------------------------------------------------------------------------
+Practice in python:
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def hasCycle(head: ListNode) -> bool:
+    #write your logic here
+
+# Helper function to create a linked list with a cycle
+def create_linked_list_with_cycle(arr, pos):
+    if not arr:
+        return None
+    head = ListNode(arr[0])
+    current = head
+    cycle_node = None
+    for index in range(1, len(arr)):
+        current.next = ListNode(arr[index])
+        current = current.next
+        if index == pos:
+            cycle_node = current
+    if pos != -1:
+        current.next = cycle_node
+    return head
+
+# Example 1
+head = create_linked_list_with_cycle([3, 2, 0, -4], 1)
+print(hasCycle(head))  # Output: True
+
+# Example 2
+head = create_linked_list_with_cycle([1, 2], 0)
+print(hasCycle(head))  # Output: True
+
+# Example 3
+head = create_linked_list_with_cycle([1], -1)
+print(hasCycle(head))  # Output: False
