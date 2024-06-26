@@ -10,7 +10,7 @@ The number of nodes in the list is the range [0, 5000].
 -5000 <= Node.val <= 5000
  
 
-practice:
+practice in java:
 
 class ListNode {
     int val;
@@ -63,4 +63,43 @@ public class Solution {
         solution.printListFromNode(middle2);
     }
 }
+________________________________________________________________________________________
+Practice in python:
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def reverseList(head: ListNode) -> ListNode:
+    #write your logic here
+
+# Helper function to create a linked list from a list
+def create_linked_list(arr):
+    if not arr:
+        return None
+    head = ListNode(arr[0])
+    current = head
+    for value in arr[1:]:
+        current.next = ListNode(value)
+        current = current.next
+    return head
+
+# Helper function to print the linked list from a given node
+def print_linked_list(head):
+    current = head
+    result = []
+    while current:
+        result.append(current.val)
+        current = current.next
+    return result
+
+# Example 1
+head = create_linked_list([1, 2, 3, 4, 5])
+reversed_head = reverseList(head)
+print(print_linked_list(reversed_head))  # Output: [5, 4, 3, 2, 1]
+
+# Example 2
+head = create_linked_list([1, 2])
+reversed_head = reverseList(head)
+print(print_linked_list(reversed_head))  # Output: [2, 1]
 
