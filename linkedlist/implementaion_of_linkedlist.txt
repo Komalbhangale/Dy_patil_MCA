@@ -1,4 +1,4 @@
-//singly linked list insertion and deletion operations
+//singly linked list insertion and deletion operations in java
 
 import java.util.*;
 
@@ -148,3 +148,107 @@ public class Main {
       obj.display();
   }
 }
+
+
+
+----------------------------------------------------------------------
+//implementtaion of singky linked list in python
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+class SinglyLinkedList:
+    def __init__(self):
+        self.head = None
+
+    # Insert at the beginning
+    def insert_at_beginning(self, data):
+        new_node = Node(data)
+        new_node.next = self.head
+        self.head = new_node
+
+    # Insert at the end
+    def insert_at_end(self, data):
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
+            return
+        last = self.head
+        while last.next:
+            last = last.next
+        last.next = new_node
+
+    # Insert at a specific position (0-based index)
+    def insert_at_position(self, data, position):
+        if position == 0:
+            self.insert_at_beginning(data)
+            return
+        new_node = Node(data)
+        current = self.head
+        for _ in range(position - 1):
+            if not current:
+                raise IndexError("Position out of bounds")
+            current = current.next
+        new_node.next = current.next
+        current.next = new_node
+
+    # Delete from the beginning
+    def delete_from_beginning(self):
+        if not self.head:
+            raise IndexError("List is empty")
+        self.head = self.head.next
+
+    # Delete from the end
+    def delete_from_end(self):
+        if not self.head:
+            raise IndexError("List is empty")
+        if not self.head.next:
+            self.head = None
+            return
+        second_last = self.head
+        while second_last.next.next:
+            second_last = second_last.next
+        second_last.next = None
+
+    # Delete from a specific position (0-based index)
+    def delete_from_position(self, position):
+        if not self.head:
+            raise IndexError("List is empty")
+        if position == 0:
+            self.head = self.head.next
+            return
+        current = self.head
+        for _ in range(position - 1):
+            if not current.next:
+                raise IndexError("Position out of bounds")
+            current = current.next
+        if not current.next:
+            raise IndexError("Position out of bounds")
+        current.next = current.next.next
+
+    # Utility function to print the list
+    def print_list(self):
+        current = self.head
+        while current:
+            print(current.data, end=" -> ")
+            current = current.next
+        print("None")
+
+# Example usage
+if __name__ == "__main__":
+    sll = SinglyLinkedList()
+    
+    # Insertions
+    sll.insert_at_beginning(3)
+    sll.insert_at_end(5)
+    sll.insert_at_position(4, 1)
+    sll.print_list()  # Output: 3 -> 4 -> 5 -> None
+    
+    # Deletions
+    sll.delete_from_beginning()
+    sll.print_list()  # Output: 4 -> 5 -> None
+    sll.delete_from_end()
+    sll.print_list()  # Output: 4 -> None
+    sll.delete_from_position(0)
+    sll.print_list()  # Output: None
