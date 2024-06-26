@@ -24,7 +24,7 @@ The number of nodes in the list is in the range [1, 100].
 1 <= Node.val <= 100
 
 --------------------------------------------------------------------------------------------------------------------
-Practice:
+Practice in java:
 
 
 class ListNode {
@@ -78,4 +78,46 @@ public class Solution {
         solution.printListFromNode(middle2);
     }
 }
+
+________________________________________________________________________________
+
+practice in python:
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def middleNode(head: ListNode) -> ListNode:
+    #write your logic here
+
+# Helper function to create a linked list from a list
+def create_linked_list(arr):
+    if not arr:
+        return None
+    head = ListNode(arr[0])
+    current = head
+    for value in arr[1:]:
+        current.next = ListNode(value)
+        current = current.next
+    return head
+
+# Helper function to print the linked list from a given node
+def print_linked_list(head):
+    current = head
+    result = []
+    while current:
+        result.append(current.val)
+        current = current.next
+    return result
+
+# Example 1
+head = create_linked_list([1, 2, 3, 4, 5])
+middle = middleNode(head)
+print(print_linked_list(middle))  # Output: [3, 4, 5]
+
+# Example 2
+head = create_linked_list([1, 2, 3, 4, 5, 6])
+middle = middleNode(head)
+print(print_linked_list(middle))  # Output: [4, 5, 6]
 
