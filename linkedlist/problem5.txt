@@ -28,7 +28,7 @@ The number of nodes in the list is sz.
 Follow up: Could you do this in one pass?
 
 
-Practice:
+Practice in java:
 
 import java.util.Scanner;
 
@@ -97,3 +97,51 @@ public class Solution {
     }
 }
 
+_______________________________________________________________________________________
+Practice in python:
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def removeNthFromEnd(head: ListNode, n: int) -> ListNode:
+    #write your logic here
+
+# Helper function to create a linked list from a list
+def create_linked_list(arr):
+    if not arr:
+        return None
+    head = ListNode(arr[0])
+    current = head
+    for value in arr[1:]:
+        current.next = ListNode(value)
+        current = current.next
+    return head
+
+# Helper function to print the linked list from a given node
+def print_linked_list(head):
+    current = head
+    result = []
+    while current:
+        result.append(current.val)
+        current = current.next
+    return result
+
+# Example 1
+head = create_linked_list([1, 2, 3, 4, 5])
+n = 2
+new_head = removeNthFromEnd(head, n)
+print(print_linked_list(new_head))  # Output: [1, 2, 3, 5]
+
+# Example 2
+head = create_linked_list([1])
+n = 1
+new_head = removeNthFromEnd(head, n)
+print(print_linked_list(new_head))  # Output: []
+
+# Example 3
+head = create_linked_list([1, 2])
+n = 1
+new_head = removeNthFromEnd(head, n)
+print(print_linked_list(new_head))  # Output: [1]
