@@ -24,7 +24,7 @@ The number of nodes in the list is in the range [1, 105].
 
 Follow up: Could you do it in O(n) time and O(1) space?
 
-Practice:
+Practice in java:
 class ListNode {
     int val;
     ListNode next;
@@ -63,4 +63,32 @@ public class Solution {
         System.out.println("Example 2: " + result2);  // Output: false
     }
 }
+--------------------------------------------------------------------------------------------
+Practice in python:
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def isPalindrome(head: ListNode) -> bool:
+    #write your logic here
+
+# Helper function to create a linked list from a list
+def create_linked_list(arr):
+    if not arr:
+        return None
+    head = ListNode(arr[0])
+    current = head
+    for value in arr[1:]:
+        current.next = ListNode(value)
+        current = current.next
+    return head
+
+# Example 1
+head = create_linked_list([1, 2, 2, 1])
+print(isPalindrome(head))  # Output: True
+
+# Example 2
+head = create_linked_list([1, 2])
+print(isPalindrome(head))  # Output: False
 
