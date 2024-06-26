@@ -1,1 +1,150 @@
+You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
 
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+
+ 
+
+Example 1:
+
+
+Input: l1 = [2,4,3], l2 = [5,6,4]
+Output: [7,0,8]
+Explanation: 342 + 465 = 807.
+Example 2:
+
+Input: l1 = [0], l2 = [0]
+Output: [0]
+Example 3:
+
+Input: l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]
+Output: [8,9,9,9,0,0,0,1]
+ 
+
+Constraints:
+
+The number of nodes in each linked list is in the range [1, 100].
+0 <= Node.val <= 9
+It is guaranteed that the list represents a number that does not have leading zeros.
+
+
+practice in java:
+// Definition for singly-linked list.
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int x) { val = x; }
+}
+
+public class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        //write you logic here
+    }
+
+    public static void main(String[] args) {
+        // Example 1
+        ListNode l1 = new ListNode(2);
+        l1.next = new ListNode(4);
+        l1.next.next = new ListNode(3);
+
+        ListNode l2 = new ListNode(5);
+        l2.next = new ListNode(6);
+        l2.next.next = new ListNode(4);
+
+        Solution solution = new Solution();
+        ListNode result1 = solution.addTwoNumbers(l1, l2);
+        printList(result1); // Output: 7 -> 0 -> 8
+
+        // Example 2
+        ListNode l3 = new ListNode(0);
+        ListNode l4 = new ListNode(0);
+
+        ListNode result2 = solution.addTwoNumbers(l3, l4);
+        printList(result2); // Output: 0
+
+        // Example 3
+        ListNode l5 = new ListNode(9);
+        l5.next = new ListNode(9);
+        l5.next.next = new ListNode(9);
+        l5.next.next.next = new ListNode(9);
+        l5.next.next.next.next = new ListNode(9);
+        l5.next.next.next.next.next = new ListNode(9);
+        l5.next.next.next.next.next.next = new ListNode(9);
+
+        ListNode l6 = new ListNode(9);
+        l6.next = new ListNode(9);
+        l6.next.next = new ListNode(9);
+        l6.next.next.next = new ListNode(9);
+
+        ListNode result3 = solution.addTwoNumbers(l5, l6);
+        printList(result3); // Output: 8 -> 9 -> 9 -> 9 -> 0 -> 0 -> 0 -> 1
+    }
+
+    // Helper method to print the linked list
+    private static void printList(ListNode head) {
+        ListNode current = head;
+        while (current != null) {
+            System.out.print(current.val);
+            if (current.next != null) {
+                System.out.print(" -> ");
+            }
+            current = current.next;
+        }
+        System.out.println();
+    }
+}
+
+----------------------------------------------------------------------------------------------
+practice in python:
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        #wtite your logic here
+
+def print_list(head: ListNode) -> None:
+    current = head
+    while current:
+        print(current.val, end=" -> " if current.next else "\n")
+        current = current.next
+
+if __name__ == "__main__":
+    # Example 1
+    l1 = ListNode(2)
+    l1.next = ListNode(4)
+    l1.next.next = ListNode(3)
+
+    l2 = ListNode(5)
+    l2.next = ListNode(6)
+    l2.next.next = ListNode(4)
+
+    solution = Solution()
+    result1 = solution.addTwoNumbers(l1, l2)
+    print_list(result1)  # Output: 7 -> 0 -> 8
+
+    # Example 2
+    l3 = ListNode(0)
+    l4 = ListNode(0)
+
+    result2 = solution.addTwoNumbers(l3, l4)
+    print_list(result2)  # Output: 0
+
+    # Example 3
+    l5 = ListNode(9)
+    l5.next = ListNode(9)
+    l5.next.next = ListNode(9)
+    l5.next.next.next = ListNode(9)
+    l5.next.next.next.next = ListNode(9)
+    l5.next.next.next.next.next = ListNode(9)
+    l5.next.next.next.next.next.next = ListNode(9)
+
+    l6 = ListNode(9)
+    l6.next = ListNode(9)
+    l6.next.next = ListNode(9)
+    l6.next.next.next = ListNode(9)
+
+    result3 = solution.addTwoNumbers(l5, l6)
+    print_list(result3)  # Output: 8 -> 9 -> 9 -> 9 -> 0 -> 0 -> 0 -> 1
