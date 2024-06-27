@@ -1,1 +1,162 @@
+//stack implementaion using array:
 
+import java.util.*;
+
+public class Stack {
+    private int maxsize;
+    private int top;
+    private int[] stackArray;
+  
+    public Stack(int size)
+    {
+      this.maxsize=size;
+      this.top=-1;
+      this.stackArray=new int[maxsize];
+      
+    }
+    
+    public void push(int value)
+    {
+      if(isFull())
+      {
+        System.out.println("Stack is allready full");
+      }
+      stackArray[++top]=value;
+    }
+    
+    public boolean isFull()
+    {
+      return (top==maxsize-1);
+    }
+    
+    public void printStack()
+    {
+      for(int top=maxsize-1;top>=0;top--)
+      {
+        System.out.println(stackArray[top]);
+      }
+    }
+    
+    public int pop()
+    {
+      if(isEmpty())
+      {
+        System.out.println("stack is allreday empty");
+      }
+      return(stackArray[top--]);
+    }
+    
+    public boolean isEmpty()
+    {
+      return (top==-1);
+    }
+    
+    public int peek()
+    {
+      if(isEmpty())
+      {
+        System.out.println("stack is empty, can't find peek");
+        return -1;
+      }
+      return stackArray[top];
+    }
+    
+    public int size()
+    {
+      return top+1;
+    }
+    
+    public static void main(String[] args) {
+      Stack stack=new Stack(5);
+      stack.push(10);
+      stack.push(20);
+      stack.push(45);
+      stack.push(78);
+      stack.push(89);
+      
+      stack.printStack();
+      
+      stack.pop();
+      System.out.println("top element after pop " +stack.peek());
+      System.out.println("size of stack "+stack.size());
+  }
+}
+_________________________________________________________________
+//implementaion of stack using linked list
+public class Stack {
+    private Node head; // Top of the stack
+
+    // Inner class to represent a node in the linked list
+    private class Node {
+        int val;
+        Node next;
+
+        Node(int val) {
+            this.val = val;
+            this.next = null;
+        }
+    }
+
+    
+    public Stack() {
+        head = null;
+    }
+
+    
+    public void push(int val) {
+        Node newNode = new Node(val);
+        newNode.next = head;
+        head = newNode;
+    }
+
+    
+    public int pop() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty. Unable to pop");
+            return -1;
+        }
+        int poppedValue = head.val;
+        head = head.next;
+        return poppedValue;
+    }
+
+    
+    public int peek() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty. Unable to peek");
+            return -1;
+        }
+        return head.val;
+    }
+
+   
+    public boolean isEmpty() {
+        return head == null;
+    }
+
+   
+    public void printStack() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.val + " -> ");
+            temp = temp.next;
+        }
+        System.out.print("null\n");
+    }
+
+    public static void main(String[] args) {
+        Stack stack = new Stack();
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+
+        stack.printStack();
+
+        System.out.println("Top element is " + stack.peek());
+        System.out.println("Popped element is " + stack.pop());
+        
+        stack.printStack();
+
+        System.out.println("Top element after pop " + stack.peek());
+    }
+}
