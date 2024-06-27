@@ -1,1 +1,126 @@
+//implement stack using array(list):
+class Stack:
+    def __init__(self, max_size):
+        self.stack = []  
+        self.max_size = max_size  
+
+    def push(self, val):
+        if len(self.stack) >= self.max_size:
+            print("Stack is full. Unable to push", val)
+            return
+        self.stack.append(val)
+
+    def pop(self):
+        if self.is_empty():
+            print("Stack is empty. Unable to pop")
+            return None
+        return self.stack.pop()
+
+    def peek(self):
+        if self.is_empty():
+            print("Stack is empty. Unable to peek")
+            return None
+        return self.stack[-1]
+
+    def is_empty(self):
+        return len(self.stack) == 0
+
+    def is_full(self):
+        return len(self.stack) == self.max_size
+
+    def size(self):
+        return len(self.stack)
+
+    def print_stack(self):
+        print("Stack:", self.stack)
+
+if __name__ == "__main__":
+    stack = Stack(5)  
+
+    stack.push(10)
+    stack.push(20)
+    stack.push(30)
+    stack.push(40)
+    stack.push(50)
+
+    stack.print_stack()
+    print("Top element is:", stack.peek())
+    print("Stack size is:", stack.size())
+
+    stack.pop()
+    stack.pop()
+
+    stack.print_stack()
+    print("Top element after pop operations:", stack.peek())
+    print("Stack size after pop operations:", stack.size())
+
+    stack.push(60)
+
+    stack.print_stack()
+    print("Top element after pushing 60:", stack.peek())
+    print("Stack size after pushing 60:", stack.size())
+______________________________________________________________________________________
+//implement stack using linked list
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class Stack:
+    def __init__(self):
+        self.top = None
+
+    def push(self, data):
+        new_node = Node(data)
+        new_node.next = self.top
+        self.top = new_node
+
+    def pop(self):
+        if self.is_empty():
+            print("Stack is empty. Unable to pop")
+            return None
+        popped_node = self.top
+        self.top = self.top.next
+        return popped_node.data
+
+    def peek(self):
+        if self.is_empty():
+            print("Stack is empty. Unable to peek")
+            return None
+        return self.top.data
+
+    def is_empty(self):
+        return self.top is None
+
+    def size(self):
+        current = self.top
+        count = 0
+        while current:
+            count += 1
+            current = current.next
+        return count
+
+
+if __name__ == "__main__":
+    stack = Stack()
+
+    stack.push(10)
+    stack.push(20)
+    stack.push(30)
+    stack.push(40)
+    stack.push(50)
+
+    print("Top element is:", stack.peek())
+    print("Stack size is:", stack.size())
+
+    stack.pop()
+    stack.pop()
+
+    print("Top element after pop operations:", stack.peek())
+    print("Stack size after pop operations:", stack.size())
+
+    stack.push(60)
+
+    print("Top element after pushing 60:", stack.peek())
+    print("Stack size after pushing 60:", stack.size())
 
