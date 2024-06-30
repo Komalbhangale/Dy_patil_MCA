@@ -1,0 +1,152 @@
+In a linked list of size n, where n is even, the ith node (0-indexed) of the linked list is known as the twin of the (n-1-i)th node, if 0 <= i <= (n / 2) - 1.
+
+For example, if n = 4, then node 0 is the twin of node 3, and node 1 is the twin of node 2. These are the only nodes with twins for n = 4.
+The twin sum is defined as the sum of a node and its twin.
+
+Given the head of a linked list with even length, return the maximum twin sum of the linked list.
+
+ 
+
+Example 1:
+
+
+Input: head = [5,4,2,1]
+Output: 6
+Explanation:
+Nodes 0 and 1 are the twins of nodes 3 and 2, respectively. All have twin sum = 6.
+There are no other nodes with twins in the linked list.
+Thus, the maximum twin sum of the linked list is 6. 
+Example 2:
+
+
+Input: head = [4,2,2,3]
+Output: 7
+Explanation:
+The nodes with twins present in this linked list are:
+- Node 0 is the twin of node 3 having a twin sum of 4 + 3 = 7.
+- Node 1 is the twin of node 2 having a twin sum of 2 + 2 = 4.
+Thus, the maximum twin sum of the linked list is max(7, 4) = 7. 
+Example 3:
+
+
+Input: head = [1,100000]
+Output: 100001
+Explanation:
+There is only one node with a twin in the linked list having twin sum of 1 + 100000 = 100001.
+ 
+
+Constraints:
+
+The number of nodes in the list is an even integer in the range [2, 105].
+1 <= Node.val <= 105
+________________________________________________________________________________________________________________________________
+
+Practice in java:
+import java.util.*;
+
+// Definition for singly-linked list node
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int x) {
+        val = x;
+        next = null;
+    }
+}
+
+public class Solution {
+
+    // Function to find the maximum twin sum in the linked list
+    public int maxTwinSum(ListNode head) {
+        //write your logic here
+    }
+
+    // Helper function to create a linked list from an array of integers
+    private ListNode createLinkedList(int[] arr) {
+        if (arr == null || arr.length == 0) return null;
+        
+        ListNode head = new ListNode(arr[0]);
+        ListNode current = head;
+        
+        for (int i = 1; i < arr.length; i++) {
+            ListNode newNode = new ListNode(arr[i]);
+            current.next = newNode;
+            current = newNode;
+        }
+        
+        return head;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+
+        // Example 1
+        int[] arr1 = {5, 4, 2, 1};
+        ListNode head1 = solution.createLinkedList(arr1);
+        System.out.println("Input: " + Arrays.toString(arr1));
+        System.out.println("Output: " + solution.maxTwinSum(head1)); // Output: 6
+
+        // Example 2
+        int[] arr2 = {4, 2, 2, 3};
+        ListNode head2 = solution.createLinkedList(arr2);
+        System.out.println("Input: " + Arrays.toString(arr2));
+        System.out.println("Output: " + solution.maxTwinSum(head2)); // Output: 7
+
+        // Example 3
+        int[] arr3 = {1, 100000};
+        ListNode head3 = solution.createLinkedList(arr3);
+        System.out.println("Input: " + Arrays.toString(arr3));
+        System.out.println("Output: " + solution.maxTwinSum(head3)); // Output: 100001
+    }
+}
+
+_________________________________________________________________________________________________
+
+Practice in python:
+
+# Definition for singly-linked list node
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+class Solution:
+    def maxTwinSum(self, head: ListNode) -> int:
+        #write your logic here
+
+
+# Helper function to create a linked list from an array of integers
+def createLinkedList(arr):
+    if not arr:
+        return None
+    
+    head = ListNode(arr[0])
+    current = head
+    
+    for val in arr[1:]:
+        new_node = ListNode(val)
+        current.next = new_node
+        current = new_node
+    
+    return head
+
+if __name__ == "__main__":
+    solution = Solution()
+
+    # Example 1
+    arr1 = [5, 4, 2, 1]
+    head1 = createLinkedList(arr1)
+    print("Input:", arr1)
+    print("Output:", solution.maxTwinSum(head1))  # Output: 6
+
+    # Example 2
+    arr2 = [4, 2, 2, 3]
+    head2 = createLinkedList(arr2)
+    print("Input:", arr2)
+    print("Output:", solution.maxTwinSum(head2))  # Output: 7
+
+    # Example 3
+    arr3 = [1, 100000]
+    head3 = createLinkedList(arr3)
+    print("Input:", arr3)
+    print("Output:", solution.maxTwinSum(head3))  # Output: 100001
