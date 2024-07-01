@@ -63,7 +63,9 @@ Practice in java:
 import java.util.*;
 
 public class BaseballGame {
+	public static int calculateScore(String[] ops) {
 	//write your own logic here
+	}
     }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
