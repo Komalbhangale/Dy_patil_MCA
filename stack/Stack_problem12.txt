@@ -1,0 +1,173 @@
+You are given two non-empty linked lists representing two non-negative integers. The most significant digit comes first and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+
+ 
+
+Example 1:
+
+
+Input: l1 = [7,2,4,3], l2 = [5,6,4]
+Output: [7,8,0,7]
+Example 2:
+
+Input: l1 = [2,4,3], l2 = [5,6,4]
+Output: [8,0,7]
+Example 3:
+
+Input: l1 = [0], l2 = [0]
+Output: [0]
+ 
+
+Constraints:
+
+The number of nodes in each linked list is in the range [1, 100].
+0 <= Node.val <= 9
+It is guaranteed that the list represents a number that does not have leading zeros.
+ 
+
+Follow up: Could you solve it without reversing the input lists?
+
+__________________________________________________________________________
+
+Practice in java:
+
+
+import java.util.Stack;
+
+// Definition for singly-linked list.
+class ListNode {
+    int val;
+    ListNode next;
+    
+    ListNode(int val) {
+        this.val = val;
+    }
+}
+
+public class Main {
+    
+    public static void main(String[] args) {
+        // Example 1
+        ListNode l1 = new ListNode(7);
+        l1.next = new ListNode(2);
+        l1.next.next = new ListNode(4);
+        l1.next.next.next = new ListNode(3);
+        
+        ListNode l2 = new ListNode(5);
+        l2.next = new ListNode(6);
+        l2.next.next = new ListNode(4);
+        
+        ListNode result1 = new Solution().addTwoNumbers(l1, l2);
+        printListNode(result1); // Expected output: [7, 8, 0, 7]
+        
+        // Example 2
+        ListNode l3 = new ListNode(2);
+        l3.next = new ListNode(4);
+        l3.next.next = new ListNode(3);
+        
+        ListNode l4 = new ListNode(5);
+        l4.next = new ListNode(6);
+        l4.next.next = new ListNode(4);
+        
+        ListNode result2 = new Solution().addTwoNumbers(l3, l4);
+        printListNode(result2); // Expected output: [8, 0, 7]
+        
+        // Example 3
+        ListNode l5 = new ListNode(0);
+        ListNode l6 = new ListNode(0);
+        
+        ListNode result3 = new Solution().addTwoNumbers(l5, l6);
+        printListNode(result3); // Expected output: [0]
+    }
+    
+    // Utility function to print ListNode in format [val1, val2, ...]
+    private static void printListNode(ListNode head) {
+        if (head == null) {
+            System.out.println("[]");
+            return;
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        ListNode curr = head;
+        while (curr != null) {
+            sb.append(curr.val);
+            if (curr.next != null) {
+                sb.append(", ");
+            }
+            curr = curr.next;
+        }
+        sb.append("]");
+        
+        System.out.println(sb.toString());
+    }
+}
+
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+       //write your logic here
+    }
+}
+
+_________________________________________________________________________
+Practice in python:
+
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        #write your logic here
+
+# Helper function to print ListNode in format [val1, val2, ...]
+def printListNode(head):
+    if not head:
+        print("[]")
+        return
+    
+    result = []
+    curr = head
+    while curr:
+        result.append(curr.val)
+        curr = curr.next
+    
+    print(result)
+
+# Example usage:
+if __name__ == "__main__":
+    # Example 1
+    l1 = ListNode(7)
+    l1.next = ListNode(2)
+    l1.next.next = ListNode(4)
+    l1.next.next.next = ListNode(3)
+    
+    l2 = ListNode(5)
+    l2.next = ListNode(6)
+    l2.next.next = ListNode(4)
+    
+    solution = Solution()
+    result1 = solution.addTwoNumbers(l1, l2)
+    printListNode(result1)  # Expected output: [7, 8, 0, 7]
+    
+    # Example 2
+    l3 = ListNode(2)
+    l3.next = ListNode(4)
+    l3.next.next = ListNode(3)
+    
+    l4 = ListNode(5)
+    l4.next = ListNode(6)
+    l4.next.next = ListNode(4)
+    
+    result2 = solution.addTwoNumbers(l3, l4)
+    printListNode(result2)  # Expected output: [8, 0, 7]
+    
+    # Example 3
+    l5 = ListNode(0)
+    l6 = ListNode(0)
+    
+    result3 = solution.addTwoNumbers(l5, l6)
+    printListNode(result3)  # Expected output: [0]
